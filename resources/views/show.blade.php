@@ -23,6 +23,7 @@
                    <p class='updated_at'>{{ $post->updated_at }}</p>
              </div>
              <div class='back'>
+                 <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
                  [<a href='/'>back</a>]
              </div>
              <script>

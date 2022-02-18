@@ -4,21 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Http\Requests\PostRequest;
+use App\Category;
 
 class PostController extends Controller
 {
-    public function index(Post $post)
-   {
-    return view('index')->with(['posts' => $post->getPaginateByLimit()]);
-   }
+   // public function index(Post $post)
+   //{
+    //return view('index')->with(['posts' => $post->getPaginateByLimit()]);
+   //}
    public function show(Post $post)
    {
        return view('show')->with(['post' => $post]);
    }
-   public function create()
-   {
-       return view('create'); 
-   }
+   //public function create()
+   //{
+     //  return view('create'); 
+   //}
    public function store(Post $post, PostRequest $request)
    {
        $input = $request['post'];
@@ -40,4 +41,12 @@ class PostController extends Controller
        $post->delete();
        return redirect('/');
    }
+   public function create(Category $category)
+   {
+    return view('posts/create')->with(['categories' => $category->get()]);;
+   }
+   public function index(Category $category)
+{
+    return view('categories.index')->with(['posts' => $category->getByCategory()]);
+}
 }
